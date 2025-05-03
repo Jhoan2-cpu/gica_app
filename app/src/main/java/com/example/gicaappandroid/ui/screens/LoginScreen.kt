@@ -1,5 +1,6 @@
 package com.example.gicaappandroid.ui.screens
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -109,7 +110,7 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = AuthVie
 
             Button(
                 onClick = {
-                    viewModel.login(username.trim(), password.trim()) { success, response ->
+                    viewModel.login(context, username.trim(), password.trim()) { success, response ->
                         Log.d("username: ", username.trim())
                         Log.d("password: ", password.trim())
                         Log.v("response de viewmodel: ", "$response")

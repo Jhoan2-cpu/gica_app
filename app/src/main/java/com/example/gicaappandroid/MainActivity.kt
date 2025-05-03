@@ -1,5 +1,7 @@
 package com.example.gicaappandroid
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,23 +14,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gicaappandroid.AppNavigation.AppNavigation
+import com.example.gicaappandroid.ui.screens.MainScreen
 import com.example.gicaappandroid.ui.theme.GicaAppAndroidTheme
 import com.example.gicaappandroid.ui.viewmodel.AuthViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val viewModel = AuthViewModel()
-        viewModel.testLoginDirecto()
-
         super.onCreate(savedInstanceState)
+        // Verificar si el usuario está logueado
+        val isLoggedIn = isUserLoggedIn()
+
         enableEdgeToEdge()
         setContent {
             GicaAppAndroidTheme {
-                GicaAppAndroidTheme {
+                if(isLoggedIn){
+                    MainScreen()
+                }else{
                     AppNavigation()
                 }
             }
         }
     }
+
+
+
+    private fun isUserLoggedIn(): Boolean {
+        val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPreferences.contains("auth_token")
+    }
+
 }
