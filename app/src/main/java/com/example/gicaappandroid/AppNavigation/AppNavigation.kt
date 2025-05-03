@@ -14,7 +14,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 //import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gicaappandroid.ui.components.CursosScreen
 import com.example.gicaappandroid.ui.screens.*
 import com.google.accompanist.navigation.animation.composable
 
@@ -35,8 +34,7 @@ fun AppNavigation() {
         composable("welcome") { WelcomeScreen(navController) }
         composable("authoptions") { AuthOptionsScreen(navController) }
         composable("login") { LoginScreen(navController) }
-        composable ("home") {HomeScreen(navController)}
-        composable ("cursos"){ CursosScreen(navController) }
+        composable ("home") { MainScreen() }
     }
 
 

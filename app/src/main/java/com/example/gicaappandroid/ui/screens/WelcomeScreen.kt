@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.gicaappandroid.R
 import com.example.gicaappandroid.ui.components.ImageCarousel
+import com.example.gicaappandroid.ui.components.ImageCarouselWithReflection
 
 
 @Composable
@@ -61,6 +62,7 @@ fun WelcomeScreen(navController: NavController) {
                     .statusBarsPadding()
                     .fillMaxWidth()
             )
+            //ImageCarouselWithReflection(images = imageList)
             ImageCarousel(images = imageList)
             Box(
                 modifier = Modifier

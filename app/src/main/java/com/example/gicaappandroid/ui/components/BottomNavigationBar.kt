@@ -37,11 +37,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@Preview()
 @Composable
 fun BottomNavigationBar(
     selectedItem: String = "Cursos",
-    onItemSelected: (String) -> Unit = {},
-    navController: androidx.navigation.NavController
+    onItemSelected: (String) -> Unit = {}
 ) {
     val items = listOf(
         BottomNavItem("Cursos", Icons.Rounded.Info),
@@ -60,8 +60,8 @@ fun BottomNavigationBar(
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
-                            Color(0xFF406C9D), // Naranja
-                            Color(0xFF415A77) // Azul
+                            Color(0xFF406C9D),
+                            Color(0xFF415A77)
                         )
                     )
                 )
@@ -82,14 +82,7 @@ fun BottomNavigationBar(
                         modifier = Modifier
                             .offset(y = offsetY)
                             .clickable {
-                                onItemSelected(item.label)
-                                when (item.label) {
-                                    "Cursos" -> navController.navigate("cursos")
-                                    "Reglamentos" -> navController.navigate("reglamentos")
-                                    "Inicio" -> navController.navigate("home")
-                                    "Plataformas" -> navController.navigate("plataformas")
-                                    "Usuario" -> navController.navigate("usuario")
-                                }
+                                onItemSelected(item.label) // Cambia la sección seleccionada
                             },
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
