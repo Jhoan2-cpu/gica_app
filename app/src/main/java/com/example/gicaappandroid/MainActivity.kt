@@ -13,9 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gicaappandroid.AppNavigation.AppNavigation
 import com.example.gicaappandroid.ui.theme.GicaAppAndroidTheme
+import com.example.gicaappandroid.ui.viewmodel.AuthViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val viewModel = AuthViewModel()
+        viewModel.testLoginDirecto()
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {

@@ -24,9 +24,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import com.example.gicaappandroid.ui.viewmodel.AuthViewModel
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: AuthViewModel = AuthViewModel()) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -108,7 +109,16 @@ fun LoginScreen(navController: NavController) {
 
             Button(
                 onClick = {
-
+                    viewModel.login(username.trim(), password.trim()) { success, response ->
+                        Log.d("username: ", username.trim())
+                        Log.d("password: ", password.trim())
+                        Log.v("response de viewmodel: ", "$response")
+                        if (success && response?.success == true) {
+                            navController.navigate("main")
+                        } else {
+                            error = response?.message ?: "Error de conexión"
+                        }
+                    }
 
                 },
                 modifier = Modifier

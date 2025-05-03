@@ -34,7 +34,7 @@ fun AppNavigation() {
         composable("welcome") { WelcomeScreen(navController) }
         composable("authoptions") { AuthOptionsScreen(navController) }
         composable("login") { LoginScreen(navController) }
-        composable ("home") { MainScreen() }
+        composable ("main") { MainScreen() }
     }
 
 
