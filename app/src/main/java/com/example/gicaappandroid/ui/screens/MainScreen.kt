@@ -29,23 +29,22 @@ import com.example.gicaappandroid.ui.screens.regulations.RegulationsScreen
 @Composable
 fun MainScreen() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-    val listState = rememberLazyListState()
     val drawerState = remember { mutableStateOf(false) }
-    var currentSection by remember { mutableStateOf("Inicio") } // Estado local para manejar la sección actual
+    var currentSection by remember { mutableStateOf("Inicio") }
 
     MainScaffoldTemplate(
         drawerState = drawerState,
         selectedItem = currentSection,
         onItemSelected = { selected ->
-            currentSection = selected // Cambia la sección actual
+            currentSection = selected
         },
         scrollBehavior = scrollBehavior
     ) {
         AnimatedContent(
             targetState = currentSection,
             transitionSpec = {
-                slideInHorizontally(initialOffsetX = { fullWidth -> fullWidth }) + fadeIn() with
-                        slideOutHorizontally(targetOffsetX = { fullWidth -> -fullWidth }) + fadeOut()
+                // Simplifica las animaciones para mejorar el rendimiento
+                slideInHorizontally() with slideOutHorizontally()
             }
         ) { targetSection ->
             when (targetSection) {

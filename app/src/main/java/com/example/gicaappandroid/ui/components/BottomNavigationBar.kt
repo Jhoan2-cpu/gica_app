@@ -26,6 +26,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,13 +44,20 @@ fun BottomNavigationBar(
     selectedItem: String = "Cursos",
     onItemSelected: (String) -> Unit = {}
 ) {
-    val items = listOf(
-        BottomNavItem("Cursos", Icons.Rounded.Info),
-        BottomNavItem("Reglamentos", Icons.Rounded.Warning),
-        BottomNavItem("Inicio", Icons.Rounded.Home),
-        BottomNavItem("Plataformas", Icons.Rounded.Lock),
-        BottomNavItem("Usuario", Icons.Rounded.AccountCircle)
-    )
+    val items = remember {
+        listOf(
+            BottomNavItem("Cursos", Icons.Rounded.Info),
+            BottomNavItem("Reglamentos", Icons.Rounded.Warning),
+            BottomNavItem("Inicio", Icons.Rounded.Home),
+            BottomNavItem("Plataformas", Icons.Rounded.Lock),
+            BottomNavItem("Usuario", Icons.Rounded.AccountCircle)
+        )
+    }
+
+    val selectedColor = Color.White
+    val unselectedColor = Color(0xFFB0BEC5)
+    val selectedBackgroundColor = Color(0xFF123967)
+    val unselectedBackgroundColor = Color(0xFF1B263B)
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -81,9 +89,7 @@ fun BottomNavigationBar(
                     Column(
                         modifier = Modifier
                             .offset(y = offsetY)
-                            .clickable {
-                                onItemSelected(item.label) // Cambia la sección seleccionada
-                            },
+                            .clickable { onItemSelected(item.label) },
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Box(
@@ -91,14 +97,14 @@ fun BottomNavigationBar(
                                 .size(48.dp)
                                 .clip(CircleShape)
                                 .background(
-                                    if (isSelected) Color(0xFF123967) else Color(0xFF1B263B)
+                                    if (isSelected) selectedBackgroundColor else unselectedBackgroundColor
                                 ),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = item.icon,
                                 contentDescription = item.label,
-                                tint = if (isSelected) Color.White else Color(0xFFB0BEC5),
+                                tint = if (isSelected) selectedColor else unselectedColor,
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -106,7 +112,7 @@ fun BottomNavigationBar(
                         Text(
                             text = item.label,
                             fontSize = 12.sp,
-                            color = if (isSelected) Color.White else Color(0xFFB0BEC5)
+                            color = if (isSelected) selectedColor else unselectedColor
                         )
                     }
                 }

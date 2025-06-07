@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 if(isLoggedIn){
                     MainScreen()
                 }else{
-                    AppNavigation()
+
                 }
             }
         }
